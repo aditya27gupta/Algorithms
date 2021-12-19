@@ -9,7 +9,6 @@ def binary_search(arr: List, find_value: int):
     first, last = 0, len(arr) - 1
 
     while 0 <= first <= last < len(arr):
-        print(first, last)
 
         mid = (first + last) // 2
 
@@ -20,8 +19,6 @@ def binary_search(arr: List, find_value: int):
             first = mid + 1
 
         elif arr[mid] > find_value:
-            last = mid + 1
-
-        print(first, last)
+            last = mid - 1
 
     return None
