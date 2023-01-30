@@ -1,11 +1,15 @@
-from typing import Dict, Tuple
+from typing import Dict, Tuple, List
 
 
 class AStarSolver:
-    def __init__(self, graph: Dict, startNode: str, endNode: str):
+    def __init__(self, graph: Dict, startNode: str, endNode: str) -> None:
         self.graph = graph
         self.startNode = startNode
         self.endNode = endNode
+        self.openNodes = set(startNode)
+        self.closedNodes = set()
+        self.gCost = {}
+        self.parents = {}
 
     def getNeighbours(self, node) -> (Tuple[str, int] | None):
         if node in self.graph:
@@ -13,28 +17,23 @@ class AStarSolver:
         else:
             return None
 
-    def hCost(self, element: str):
+    def hCost(self, element: str) -> int:
         cost = {"A": 11, "B": 6, "C": 99, "D": 1, "E": 7, "G": 99}
         return cost[element]
 
-    def find_path(self):
-        openNodes = set(self.startNode)
-        closedNodes = set()
-        gCost = {}
-        parents = {}
+    def find_path(self) -> (List | None):
+        self.gCost[self.startNode] = 0
+        self.parents[self.startNode] = self.startNode
 
-        gCost[self.startNode] = 0
-        parents[self.startNode] = self.startNode
-
-        while len(openNodes) > 0:
+        while len(self.openNodes) > 0:
             currentNode = None
 
-            for node in openNodes:
+            for node in self.openNodes:
                 if currentNode is None:
                     currentNode = node
-                elif gCost[node] + self.hCost(node) < gCost[currentNode] + self.hCost(
+                elif self.gCost[node] + self.hCost(node) < self.gCost[
                     currentNode
-                ):
+                ] + self.hCost(currentNode):
                     currentNode = node
 
             if currentNode is None:
@@ -46,32 +45,32 @@ class AStarSolver:
 
             else:
                 for node, cost in self.getNeighbours(currentNode):
-                    if node not in openNodes and node not in closedNodes:
-                        openNodes.add(node)
-                        parents[node] = currentNode
-                        gCost[node] = gCost[currentNode] + cost
+                    if node not in self.openNodes and node not in self.closedNodes:
+                        self.openNodes.add(node)
+                        self.parents[node] = currentNode
+                        self.gCost[node] = self.gCost[currentNode] + cost
 
                     else:
-                        if gCost[node] > gCost[currentNode] + cost:
-                            gCost[node] = gCost[currentNode] + cost
-                            parents[node] = currentNode
+                        if self.gCost[node] > self.gCost[currentNode] + cost:
+                            self.gCost[node] = self.gCost[currentNode] + cost
+                            self.parents[node] = currentNode
 
-                        if node in closedNodes:
-                            closedNodes.remove(node)
-                            openNodes.add(node)
+                        if node in self.closedNodes:
+                            self.closedNodes.remove(node)
+                            self.openNodes.add(node)
 
             if currentNode == self.endNode:
                 path = []
-                while parents[currentNode] != currentNode:
+                while self.parents[currentNode] != currentNode:
                     path.append(currentNode)
-                    currentNode = parents[currentNode]
+                    currentNode = self.parents[currentNode]
 
                 path.append(currentNode)
                 path.reverse()
                 return path
 
-            openNodes.remove(currentNode)
-            closedNodes.add(currentNode)
+            self.openNodes.remove(currentNode)
+            self.closedNodes.add(currentNode)
 
         print("Path doesn't exist")
         return None
