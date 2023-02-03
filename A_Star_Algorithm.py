@@ -21,55 +21,55 @@ class AStarSolver:
         cost = {"A": 11, "B": 6, "C": 99, "D": 1, "E": 7, "G": 99}
         return cost[element]
 
+    def fCost(self, node: str) -> int:
+        return self.gCost[node] + self.hCost(node)
+
+    def getPath(self, node):
+        path = []
+        while self.parents[node] != node:
+            path.append(node)
+            node = self.parents[node]
+        path.append(node)
+        path.reverse()
+        return " -> ".join(path)
+
     def find_path(self) -> (List | None):
         self.gCost[self.startNode] = 0
         self.parents[self.startNode] = self.startNode
 
         while len(self.openNodes) > 0:
-            currentNode = None
+            currentNode = self.openNodes.__iter__().__next__()
 
             for node in self.openNodes:
-                if currentNode is None:
-                    currentNode = node
-                elif self.gCost[node] + self.hCost(node) < self.gCost[
-                    currentNode
-                ] + self.hCost(currentNode):
+                if self.fCost(node) < self.fCost(currentNode):
                     currentNode = node
 
-            if currentNode is None:
-                print("Path Doesn't exist")
-                return None
+            self.openNodes.remove(currentNode)
 
-            if currentNode == self.endNode or self.getNeighbours(currentNode) is None:
+            if currentNode == self.endNode:
+                return self.getPath(currentNode)
+
+            elif self.getNeighbours(currentNode) is None:
                 pass
 
             else:
                 for node, cost in self.getNeighbours(currentNode):
-                    if node not in self.openNodes and node not in self.closedNodes:
+                    successorCurrentCost = self.gCost[currentNode] + cost
+
+                    if node in self.openNodes:
+                        if self.gCost[node] <= successorCurrentCost:
+                            continue
+                    elif node in self.closedNodes:
+                        if self.gCost[node] <= successorCurrentCost:
+                            continue
+                        self.closedNodes.remove(node)
                         self.openNodes.add(node)
-                        self.parents[node] = currentNode
-                        self.gCost[node] = self.gCost[currentNode] + cost
-
                     else:
-                        if self.gCost[node] > self.gCost[currentNode] + cost:
-                            self.gCost[node] = self.gCost[currentNode] + cost
-                            self.parents[node] = currentNode
+                        self.openNodes.add(node)
 
-                        if node in self.closedNodes:
-                            self.closedNodes.remove(node)
-                            self.openNodes.add(node)
+                    self.gCost[node] = successorCurrentCost
+                    self.parents[node] = currentNode
 
-            if currentNode == self.endNode:
-                path = []
-                while self.parents[currentNode] != currentNode:
-                    path.append(currentNode)
-                    currentNode = self.parents[currentNode]
-
-                path.append(currentNode)
-                path.reverse()
-                return path
-
-            self.openNodes.remove(currentNode)
             self.closedNodes.add(currentNode)
 
         print("Path doesn't exist")
