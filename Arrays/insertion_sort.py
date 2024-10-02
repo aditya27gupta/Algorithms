@@ -6,7 +6,7 @@ Insertion Sort Algorithm:
 """
 
 
-def insertion_sort(array: list) -> list:
+def insertion_sort(array: list[int]) -> list[int]:
     total_elements: int = len(array)
     for i in range(1, total_elements):
         insert_index = i
@@ -18,7 +18,7 @@ def insertion_sort(array: list) -> list:
     return array
 
 
-def insertion_sort_better(array: list) -> list:
+def insertion_sort_better(array: list[int]) -> list[int]:
     total_elements: int = len(array)
     for i in range(1, total_elements):
         insert_index = i

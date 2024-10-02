@@ -8,7 +8,7 @@ Counting Sort Algorithm:
 """
 
 
-def counting_sort(array: list) -> list:
+def counting_sort(array: list[int]) -> list[int]:
     count_array = [0] * (max(array) + 1)
     new_array = []
 

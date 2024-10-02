@@ -7,7 +7,7 @@ Selection Sort Algorithm:
 """
 
 
-def selection_sort(array: list) -> list:
+def selection_sort(array: list[int]) -> list[int]:
     total_elements: int = len(array)
     for i in range(total_elements - 1):
         minIndex = i
@@ -19,7 +19,7 @@ def selection_sort(array: list) -> list:
     return array
 
 
-def selection_sort_better(array: list) -> list:
+def selection_sort_better(array: list[int]) -> list[int]:
     total_elements: int = len(array)
     for i in range(total_elements - 1):
         minIndex = i

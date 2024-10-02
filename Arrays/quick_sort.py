@@ -7,7 +7,7 @@ Quick Sort Algorithm:
 """
 
 
-def pivot_element(array: list, high: int, low: int) -> int:
+def pivot_element(array: list[int], high: int, low: int) -> int:
     pivot_value = array[high]
     pivot_index = low - 1
 
@@ -20,7 +20,7 @@ def pivot_element(array: list, high: int, low: int) -> int:
     return pivot_index + 1
 
 
-def quick_sort(array: list, high: int = None, low: int = 0) -> list:
+def quick_sort(array: list[int], high: int | None = None, low: int = 0) -> list[int]:
     if high is None:
         print(array)
         high = len(array) - 1

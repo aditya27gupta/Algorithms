@@ -11,7 +11,6 @@ target-version = ['py312']
 
 [tool.mypy]
 python_version = "3.12"
-mypy_path = "."
 strict = true
 warn_unreachable = true
 implicit_reexport = true

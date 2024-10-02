@@ -7,7 +7,7 @@ Bubble Sort Algorithm:
 """
 
 
-def bubble_sort(array: list) -> list:
+def bubble_sort(array: list[int]) -> list[int]:
     total_elements: int = len(array)
     for i in range(total_elements - 1):
         for j in range(total_elements - 1 - i):
@@ -16,7 +16,7 @@ def bubble_sort(array: list) -> list:
     return array
 
 
-def bubble_sort_better(array: list) -> list:
+def bubble_sort_better(array: list[int]) -> list[int]:
     total_elements: int = len(array)
     for i in range(total_elements - 1):
         swapped: bool = False

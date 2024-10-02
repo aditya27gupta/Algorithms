@@ -1,4 +1,5 @@
 import random
+from typing import List, Callable
 from Arrays.bubble_sort import bubble_sort, bubble_sort_better
 from Arrays.selection_sort import selection_sort, selection_sort_better
 from Arrays.insertion_sort import insertion_sort, insertion_sort_better
@@ -8,7 +9,7 @@ from Arrays.counting_sort import counting_sort
 
 NUM_EXPERIMENTS = 10
 ARRAY_SIZE = 300
-sort_functions = [
+sort_functions: List[Callable[[list[int]], list[int]]] = [
     bubble_sort,
     bubble_sort_better,
     selection_sort,
