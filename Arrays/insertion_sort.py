@@ -15,7 +15,6 @@ def insertion_sort(array: list) -> list:
             if array[j] > current_value:
                 insert_index = j
         array.insert(insert_index, current_value)
-        print(f"Array after step {i}: {array}")
     return array
 
 
@@ -31,5 +30,4 @@ def insertion_sort_better(array: list) -> list:
             else:
                 break
         array[insert_index] = current_value
-        print(f"Array after step {i}: {array}")
     return array

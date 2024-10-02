@@ -25,5 +25,5 @@ show_column_numbers = true
 
 [tool.pytest.ini_options]
 minversion = "8.0"
-addopts = "-ra --cache-clear --full-trace"
+addopts = "-ra -xl --cache-clear --color=yes"
 testpaths = ["tests"]
