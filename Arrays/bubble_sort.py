@@ -6,6 +6,7 @@ Bubble Sort Algorithm:
     Go through the array as many times as there are values in the array.
 """
 
+
 def bubble_sort(array: list) -> list:
     total_elements: int = len(array)
     for i in range(total_elements - 1):
@@ -26,8 +27,3 @@ def bubble_sort_better(array: list) -> list:
         if not swapped:
             break
     return array
-
-
-array = [1, 4, 9, 2, 8, 3, 0]
-print(bubble_sort(array=array))
-print(bubble_sort_better(array=array))
