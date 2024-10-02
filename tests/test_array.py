@@ -9,8 +9,13 @@ from Arrays.counting_sort import counting_sort
 NUM_EXPERIMENTS = 10
 ARRAY_SIZE = 300
 sort_functions = [
-    bubble_sort, bubble_sort_better, selection_sort, selection_sort_better,
-    insertion_sort, insertion_sort_better, quick_sort
+    bubble_sort,
+    bubble_sort_better,
+    selection_sort,
+    selection_sort_better,
+    insertion_sort,
+    insertion_sort_better,
+    quick_sort,
 ]
 
 

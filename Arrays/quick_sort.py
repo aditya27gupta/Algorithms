@@ -6,16 +6,17 @@ Quick Sort Algorithm:
     Do the same operations (recursively) for the sub-arrays on the left and right side of the pivot element.
 """
 
+
 def pivot_element(array: list, high: int, low: int) -> int:
     pivot_value = array[high]
     pivot_index = low - 1
-    
+
     for i in range(low, high):
         if array[i] < pivot_value:
             pivot_index += 1
             array[pivot_index], array[i] = array[i], array[pivot_index]
-            
-    array[pivot_index+1], array[high] = array[high], array[pivot_index + 1]
+
+    array[pivot_index + 1], array[high] = array[high], array[pivot_index + 1]
     return pivot_index + 1
 
 
@@ -25,6 +26,6 @@ def quick_sort(array: list, high: int = None, low: int = 0) -> list:
         high = len(array) - 1
     if high > low:
         pivot_index = pivot_element(array=array, high=high, low=low)
-        quick_sort(array=array, high=pivot_index-1, low=low)
-        quick_sort(array=array, high=high, low=pivot_index+1)
+        quick_sort(array=array, high=pivot_index - 1, low=low)
+        quick_sort(array=array, high=high, low=pivot_index + 1)
     return array

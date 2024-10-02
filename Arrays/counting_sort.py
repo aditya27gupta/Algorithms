@@ -7,6 +7,7 @@ Counting Sort Algorithm:
     For each count in the counting array, create the correct number of elements, with values that correspond to the counting array index.
 """
 
+
 def counting_sort(array: list) -> list:
     count_array = [0] * (max(array) + 1)
     new_array = []
