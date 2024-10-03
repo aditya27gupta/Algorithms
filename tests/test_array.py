@@ -5,6 +5,7 @@ from Arrays.selection_sort import selection_sort, selection_sort_better
 from Arrays.insertion_sort import insertion_sort, insertion_sort_better
 from Arrays.quick_sort import quick_sort
 from Arrays.counting_sort import counting_sort
+from Arrays.radix_sort import radix_sort
 
 
 NUM_EXPERIMENTS = 10
@@ -17,6 +18,7 @@ sort_functions: List[Callable[[list[int]], list[int]]] = [
     insertion_sort,
     insertion_sort_better,
     quick_sort,
+    radix_sort,
 ]
 
 

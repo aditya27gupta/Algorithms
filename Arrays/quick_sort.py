@@ -22,7 +22,6 @@ def pivot_element(array: list[int], high: int, low: int) -> int:
 
 def quick_sort(array: list[int], high: int | None = None, low: int = 0) -> list[int]:
     if high is None:
-        print(array)
         high = len(array) - 1
     if high > low:
         pivot_index = pivot_element(array=array, high=high, low=low)
