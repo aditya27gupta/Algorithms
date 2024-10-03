@@ -23,7 +23,3 @@ def radix_sort(array: list[int]) -> list[int]:
         divider *= 10
 
     return array
-
-
-myArray = [170, 45, 75, 90, 802, 24, 2, 66]
-radix_sort(myArray)
