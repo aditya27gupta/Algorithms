@@ -12,7 +12,7 @@ from Arrays.binary_search import binary_search
 
 
 NUM_EXPERIMENTS = 10
-ARRAY_SIZE = 10
+ARRAY_SIZE = 11
 sort_functions: List[Callable[[list[int]], list[int]]] = [
     bubble_sort,
     bubble_sort_better,
