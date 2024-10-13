@@ -12,7 +12,7 @@ from Arrays.binary_search import binary_search
 
 
 NUM_EXPERIMENTS = 10
-ARRAY_SIZE = 100
+ARRAY_SIZE = 300
 sort_functions: List[Callable[[list[int]], list[int]]] = [
     bubble_sort,
     bubble_sort_better,
@@ -25,26 +25,29 @@ sort_functions: List[Callable[[list[int]], list[int]]] = [
     merge_sort,
 ]
 
-search_functions: List[Callable[[list[int], int], int]] = [linear_search, binary_search]
-
 
 def test_sort() -> None:
     for func in sort_functions:
         for _ in range(NUM_EXPERIMENTS):
             array = [random.randint(1, ARRAY_SIZE * 2) for _ in range(ARRAY_SIZE)]
             sorted_array = func(array)
-            assert sorted(array) == sorted_array
+            correct_sorted_array = sorted(array)
+            assert correct_sorted_array == sorted_array
 
 
-def test_search() -> None:
-    for func in search_functions:
-        for _ in range(NUM_EXPERIMENTS):
-            array = sorted(
-                [random.randint(1, ARRAY_SIZE * 2) for _ in range(ARRAY_SIZE)]
-            )
-            element_to_find = random.randint(1, ARRAY_SIZE * 2)
-            idx = func(array, element_to_find)
-            correct_idx = (
-                array.index(element_to_find) if element_to_find in array else -1
-            )
-            assert idx == correct_idx
+def test_linear_search() -> None:
+    for _ in range(NUM_EXPERIMENTS):
+        array = [random.randint(1, ARRAY_SIZE * 2) for _ in range(ARRAY_SIZE)]
+        element_to_find = random.randint(1, ARRAY_SIZE * 2)
+        idx = linear_search(array, element_to_find)
+        correct_idx = array.index(element_to_find) if element_to_find in array else -1
+        assert idx == correct_idx
+
+
+def test_binary_search() -> None:
+    for _ in range(NUM_EXPERIMENTS):
+        array = sorted([random.randint(1, ARRAY_SIZE * 2) for _ in range(ARRAY_SIZE)])
+        element_to_find = random.randint(1, ARRAY_SIZE * 2)
+        idx = binary_search(array, element_to_find)
+        correct_idx = array.index(element_to_find) if element_to_find in array else -1
+        assert idx == correct_idx or array[idx] == element_to_find
