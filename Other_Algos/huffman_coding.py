@@ -29,7 +29,7 @@ def generate_codes(
     generate_codes(node.right, codes, current_code + "1")
 
 
-def huffman_coding(input_string: str) -> str:
+def huffman_encoder(input_string: str) -> tuple[str, dict[str, str]]:
     nodes: list[Node] = []
     added_node: set[str] = set()
     for letter in input_string:
@@ -54,4 +54,19 @@ def huffman_coding(input_string: str) -> str:
     for letter in input_string:
         huffman_code += codes[letter]
 
-    return huffman_code
+    return huffman_code, codes
+
+
+def huffman_decoder(huffman_code: str, codes: dict[str, str]) -> str:
+    original_string = ""
+    start_idx, end_idx = 0, 1
+    reverse_codes = {val: key for key, val in codes.items()}
+    while end_idx < len(huffman_code) + 1:
+        curr_substr = huffman_code[start_idx:end_idx]
+        if curr_substr in reverse_codes:
+            original_string += reverse_codes[curr_substr]
+            start_idx = end_idx
+            end_idx = start_idx
+        end_idx += 1
+
+    return original_string
